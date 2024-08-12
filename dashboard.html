@@ -1,11 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>welcome</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="dash">
+    <div class="containerh">
+      <h1 class="outh">Welcome to the Dashboard</h1>
+      <button class="out" id="btns">Sign Out</button>
+    </div>
+
+    <script type="module">
+      import { auth } from "./firebase.mjs";
+      import {
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          window.location.href = "signIn.html";
+        }
+      });
+
+      const btns = document.getElementById("btns");
+
+      btns.addEventListener("click", () => {
+        signOut(auth)
+          .then(() => {
+            console.log("Signed out successfully");
+            window.location.href = "signIn.html";
+          })
+          .catch((error) => {
+            console.error("Error signing out:", error);
+          });
+      });
+    </script>
+  </body>
 </html>
