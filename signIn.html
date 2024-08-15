@@ -38,26 +38,15 @@
           .then((userCredential) => {
             const user = userCredential.user;
             console.log("user ==== ", user);
-            Swal.fire({
-              icon: "success",
-              title: "Signed In!",
-              text: "You have successfully signed in.",
-              confirmButtonText: "OK",
-            // }).then(() => {
-            //   window.location.href = "dashboard.html";
-            // });
+    
+              window.location.href = "dashboard.html";
+         
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log("error code ===", errorCode);
             console.log("error message === ", errorMessage);
-            Swal.fire({
-              icon: "error",
-              title: "Sign In Failed",
-              text: errorMessage,
-              confirmButtonText: "Try Again",
-            });
           });
       });
     </script>
